@@ -23,10 +23,11 @@
   font-family: 'Catamaran';
   font-size: 1.7rem;
   text-decoration: none;
+  color:rgb(114, 175, 171);
 }
 .navbar_links a:hover,
 .navbar_links a:active{
-  color: rgb(114, 175, 171);
+  color: rgb(230, 179, 147);
 }
 
 .navbar_links ul {
