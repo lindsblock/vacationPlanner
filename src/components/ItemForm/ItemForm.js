@@ -1,23 +1,25 @@
 import React from 'react';
-import { Button, Checkbox, Form, Input, Radio, Select, TextArea} from 'semantic-ui-react';
+import { Checkbox, Form, Input, Select, TextArea, Divider} from 'semantic-ui-react';
 import './ItemForm.css';
 
 const options = [
   { key: 'h', text: 'Hotel', value: 'hotel' },
   { key: 'c', text: 'Car Rental', value: 'car' },
   { key: 'a', text: 'Activity', value: 'activity' },
+  { key: 'f', text: 'Flight', value: 'flight' },
 ]
 class ItemForm extends React.Component {
   state = {}
 
 handleChange = (e, { value }) => this.setState({ value })
   render(){
-    const { value } = this.state
+    // const { value } = this.state
     return(
       <div>
-        <h1 className="headline">Add An Item</h1>
         <div className="formHolder">
         <Form style={{fontSize:'19px'}}>
+          <h1>Add An Item</h1>
+          <Divider />
         <Form.Group widths='equal'>
           <Form.Field control={Input} label='Item Name' placeholder='Item Name' />
           <Form.Field control={Input} label='Date(s)' placeholder='Date(s)' />

@@ -4,8 +4,11 @@ import './Home.css';
 class Home extends Component {
   render(){
     return(
-      <div>
+      <div style={{textAlign:'center'}}>
       <h1 className="name">Lindsay's Vacation Planner</h1>
+      <button className="button">
+        <a href="/trips">View My Trips</a>
+      </button>
       </div>
     )
   }

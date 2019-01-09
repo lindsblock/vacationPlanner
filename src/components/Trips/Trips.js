@@ -1,13 +1,19 @@
 import React from 'react';
 import './Trips.css';
 import TripForm from '../TripForm/TripForm';
-import { Container } from 'semantic-ui-react';
+import { Container, Table } from 'semantic-ui-react';
+import axios from '../../axios-trips';
 
 class Trips extends React.Component {
-  state = { showForm: false }
+  state = { showForm: false, trips:[] }
+
+  // componentDidMount = () => {
+  //   axios.get('/trips.json')
+  //   .then(res => this.setState({ trips: res.data}) )
+  // }
 
   showForm = () => {
-    return <TripForm />
+    return <TripForm submit={this.submit} />
   }
 
   toggleForm = () => {
@@ -16,10 +22,39 @@ class Trips extends React.Component {
     })
   }
 
+  submit = (trip) => {
+    const { trips } = this.state
+    axios.post('/trips.json', (trip) )
+     .then(res => {
+       this.setState({
+         trips:[...trips, res.data],
+         showForm:false
+       })
+     })
+  }
+
   showTrips = () => {
+    // const { trips } = this.state
     return(
       <div>
+        <br />
         <h1>Map over trips here</h1>
+        <Table celled padded>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Name</Table.HeaderCell>
+              <Table.HeaderCell>Dates</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+          {/* { trips.map( (t, i) =>
+          <Table.Body key={i}>
+            <Table.Row>
+              <Table.Cell key={t.id}>{t.name}</Table.Cell>
+              <Table.Cell key={t.id}>{t.date}</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        )} */}
+        </Table>
       </div>
     )
   }
@@ -27,8 +62,8 @@ class Trips extends React.Component {
   render() {
     const { showForm } = this.state;
     return(
-      <div>
-        <h1>Trips</h1>
+      <div >
+        <h1 className="headline">Trips</h1>
         <Container textAlign="center">
           <button className="button" onClick={this.toggleForm}>
             { showForm ? 'Cancel' : 'Add A Trip'}
